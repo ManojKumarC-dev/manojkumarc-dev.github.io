@@ -60,22 +60,7 @@ const services = [
 ];
 
 const technologies = [
-  {
-  name: "Kotlin",
-  icon: kotlin,
-},
-{
-  name: "Android",
-  icon: android,
-},
-{
-  name: "Jetpack Compose",
-  icon: compose,
-},
-{
-  name: "Git",
-  icon: git,
-},
+ 
 ];
 
 const experiences = [
