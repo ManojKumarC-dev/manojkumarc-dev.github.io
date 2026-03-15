@@ -14,7 +14,7 @@ function Hero() {
         <p className="mb-5 text-xs uppercase tracking-[0.35em] text-white/45">
           Portfolio 2026
         </p>
-        <h1 className="max-w-4xl font-serif text-6xl leading-[0.88] tracking-tight text-white sm:text-7xl lg:text-[8rem]">
+        <h1 className="max-w-5xl font-serif text-7xl leading-[0.88] tracking-tight text-white sm:text-8xl lg:text-[8.6rem]">
           Manoj Kumar C
           <span className="block font-sans text-lg font-medium uppercase tracking-[0.32em] text-cyan-200/80 sm:mt-4 sm:text-xl">
             Embedded Systems and Software Engineer

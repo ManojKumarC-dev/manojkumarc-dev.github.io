@@ -19,7 +19,11 @@ const items = [
   {
     period: "Internships",
     role: "Firmware and Embedded Systems Internships",
-    company: "HCL Technologies, NSIC Technical Service Centre, IndFurr",
+    company: [
+      "HCL Technologies",
+      "National Small Scale Industries Technical Service Centre",
+      "IndFurr SuperHeat Furnaces, Ambattur Industrial Estate",
+    ],
     description:
       "Completed industry internships in BIOS porting, low-level firmware customization, embedded systems, power electronics, and IoT-oriented industrial applications.",
   },
@@ -47,9 +51,17 @@ function Experience() {
                 <h3 className="font-serif text-3xl leading-tight text-white">
                   {item.role}
                 </h3>
-                <p className="mt-2 text-sm uppercase tracking-[0.22em] text-cyan-200/65">
-                  {item.company}
-                </p>
+                {Array.isArray(item.company) ? (
+                  <div className="mt-2 space-y-2 text-sm uppercase tracking-[0.22em] text-cyan-200/65">
+                    {item.company.map((companyName) => (
+                      <p key={companyName}>{companyName}</p>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="mt-2 text-sm uppercase tracking-[0.22em] text-cyan-200/65">
+                    {item.company}
+                  </p>
+                )}
               </div>
               <p className="max-w-2xl text-sm leading-7 text-white/64">
                 {item.description}
