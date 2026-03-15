@@ -1,66 +1,49 @@
-import React from "react";
-import Tilt from "react-parallax-tilt";
-import { motion } from "framer-motion";
+import Reveal from "./Reveal";
+import SectionTitle from "./SectionTitle";
 
-import { styles } from "../styles";
-import { services } from "../constants";
-import { SectionWrapper } from "../hoc";
-import { fadeIn, textVariant } from "../utils/motion";
-
-const ServiceCard = ({ index, title, icon }) => (
-  <Tilt className='xs:w-[250px] w-full'>
-    <motion.div
-      variants={fadeIn("right", "spring", index * 0.5, 0.75)}
-      className='w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card'
-    >
-      <div
-        options={{
-          max: 45,
-          scale: 1,
-          speed: 450,
-        }}
-        className='bg-tertiary rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col'
-      >
-        <img
-          src={icon}
-          alt='web-development'
-          className='w-16 h-16 object-contain'
-        />
-
-        <h3 className='text-white text-[20px] font-bold text-center'>
-          {title}
-        </h3>
-      </div>
-    </motion.div>
-  </Tilt>
-);
-
-const About = () => {
+function About() {
   return (
-    <>
-      <motion.div variants={textVariant()}>
-        <p className={styles.sectionSubText}>Introduction</p>
-        <h2 className={styles.sectionHeadText}>Overview.</h2>
-      </motion.div>
+    <section id="about" className="border-b border-white/10 py-20 sm:py-28">
+      <Reveal>
+        <SectionTitle
+          title="About"
+          subtitle="Short, precise, and built to feel intentional."
+        />
+      </Reveal>
 
-      <motion.p
-        variants={fadeIn("", "", 0.1, 1)}
-        className='mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]'
-      >
-        I'm a skilled software developer with experience in TypeScript and
-        JavaScript, and expertise in frameworks like React, Node.js, and
-        Three.js. I'm a quick learner and collaborate closely with clients to
-        create efficient, scalable, and user-friendly solutions that solve
-        real-world problems. Let's work together to bring your ideas to life!
-      </motion.p>
+      <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
+        <Reveal>
+          <p className="max-w-3xl font-serif text-3xl leading-tight text-white sm:text-5xl">
+            I care about software that feels calm, useful, and technically
+            solid. My work centers on Android products with clean architecture,
+            reliable behavior, and understated visual polish.
+          </p>
+        </Reveal>
 
-      <div className='mt-20 flex flex-wrap gap-10'>
-        {services.map((service, index) => (
-          <ServiceCard key={service.title} index={index} {...service} />
-        ))}
+        <Reveal delay={0.12}>
+          <div className="space-y-6 rounded-[2rem] border border-white/10 bg-white/[0.045] p-7 backdrop-blur-md">
+            <div>
+              <p className="text-xs uppercase tracking-[0.28em] text-white/40">
+                Approach
+              </p>
+              <p className="mt-2 text-sm leading-7 text-white/62">
+                Clear hierarchy, restrained motion, and focused interfaces.
+              </p>
+            </div>
+            <div className="border-t border-white/10 pt-6">
+              <p className="text-xs uppercase tracking-[0.28em] text-white/40">
+                Experience
+              </p>
+              <p className="mt-2 text-sm leading-7 text-white/62">
+                Android development, UI systems, APIs, and iterative product
+                refinement.
+              </p>
+            </div>
+          </div>
+        </Reveal>
       </div>
-    </>
+    </section>
   );
-};
+}
 
-export default SectionWrapper(About, "about");
+export default About;

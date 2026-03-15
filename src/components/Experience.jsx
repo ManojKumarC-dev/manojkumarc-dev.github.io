@@ -1,85 +1,58 @@
-import React from "react";
-import {
-  VerticalTimeline,
-  VerticalTimelineElement,
-} from "react-vertical-timeline-component";
-import { motion } from "framer-motion";
+import Reveal from "./Reveal";
+import SectionTitle from "./SectionTitle";
 
-import "react-vertical-timeline-component/style.min.css";
+const items = [
+  {
+    period: "2024 - Present",
+    role: "Android Developer",
+    company: "Current Focus",
+    description:
+      "Building Android products with an emphasis on maintainable architecture, Compose UI, and reliable release quality.",
+  },
+  {
+    period: "2023 - 2024",
+    role: "Mobile Engineer",
+    company: "Product Work",
+    description:
+      "Worked across feature delivery, UI refinement, API integration, and internal tooling for smoother user flows.",
+  },
+];
 
-import { styles } from "../styles";
-import { experiences } from "../constants";
-import { SectionWrapper } from "../hoc";
-import { textVariant } from "../utils/motion";
-
-const ExperienceCard = ({ experience }) => {
+function Experience() {
   return (
-    <VerticalTimelineElement
-      contentStyle={{
-        background: "#1d1836",
-        color: "#fff",
-      }}
-      contentArrowStyle={{ borderRight: "7px solid  #232631" }}
-      date={experience.date}
-      iconStyle={{ background: experience.iconBg }}
-      icon={
-        <div className='flex justify-center items-center w-full h-full'>
-          <img
-            src={experience.icon}
-            alt={experience.company_name}
-            className='w-[60%] h-[60%] object-contain'
-          />
-        </div>
-      }
-    >
-      <div>
-        <h3 className='text-white text-[24px] font-bold'>{experience.title}</h3>
-        <p
-          className='text-secondary text-[16px] font-semibold'
-          style={{ margin: 0 }}
-        >
-          {experience.company_name}
-        </p>
-      </div>
+    <section id="experience" className="border-b border-white/10 py-20 sm:py-28">
+      <Reveal>
+        <SectionTitle
+          title="Work experience"
+          subtitle="A concise view of the roles and product work shaping my Android practice."
+        />
+      </Reveal>
 
-      <ul className='mt-5 list-disc ml-5 space-y-2'>
-        {experience.points.map((point, index) => (
-          <li
-            key={`experience-point-${index}`}
-            className='text-white-100 text-[14px] pl-1 tracking-wider'
-          >
-            {point}
-          </li>
+      <div className="space-y-6">
+        {items.map((item, index) => (
+          <Reveal key={`${item.role}-${item.period}`} delay={index * 0.08}>
+            <article className="grid gap-6 rounded-[2rem] border border-white/10 bg-white/[0.045] p-7 backdrop-blur-md lg:grid-cols-[0.24fr_0.38fr_1fr]">
+              <p className="text-xs uppercase tracking-[0.28em] text-white/45">
+                {item.period}
+              </p>
+              <div>
+                <div className="mb-5 h-px w-14 bg-gradient-to-r from-cyan-200/70 to-transparent" />
+                <h3 className="font-serif text-3xl leading-tight text-white">
+                  {item.role}
+                </h3>
+                <p className="mt-2 text-sm uppercase tracking-[0.22em] text-cyan-200/65">
+                  {item.company}
+                </p>
+              </div>
+              <p className="max-w-2xl text-sm leading-7 text-white/64">
+                {item.description}
+              </p>
+            </article>
+          </Reveal>
         ))}
-      </ul>
-    </VerticalTimelineElement>
-  );
-};
-
-const Experience = () => {
-  return (
-    <>
-      <motion.div variants={textVariant()}>
-        <p className={`${styles.sectionSubText} text-center`}>
-          What I have done so far
-        </p>
-        <h2 className={`${styles.sectionHeadText} text-center`}>
-          Work Experience.
-        </h2>
-      </motion.div>
-
-      <div className='mt-20 flex flex-col'>
-        <VerticalTimeline>
-          {experiences.map((experience, index) => (
-            <ExperienceCard
-              key={`experience-${index}`}
-              experience={experience}
-            />
-          ))}
-        </VerticalTimeline>
       </div>
-    </>
+    </section>
   );
-};
+}
 
-export default SectionWrapper(Experience, "work");
+export default Experience;

@@ -1,50 +1,64 @@
 import { motion } from "framer-motion";
+import Reveal from "./Reveal";
 
-import { styles } from "../styles";
-import { ComputersCanvas } from "./canvas";
+const stats = [
+  { label: "Focus", value: "Android apps with clean UX" },
+  { label: "Stack", value: "Kotlin, Compose, Java, APIs" },
+  { label: "Location", value: "India / Remote" },
+];
 
-const Hero = () => {
+function Hero() {
   return (
-    <section className={`relative w-full h-screen mx-auto`}>
-      <div
-        className={`absolute inset-0 top-[120px]  max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}
-      >
-        <div className='flex flex-col justify-center items-center mt-5'>
-          <div className='w-5 h-5 rounded-full bg-[#915EFF]' />
-          <div className='w-1 sm:h-80 h-40 violet-gradient' />
+    <section className="grid min-h-screen items-end gap-12 border-b border-white/10 py-20 lg:grid-cols-[1.35fr_0.65fr]">
+      <Reveal>
+        <p className="mb-5 text-xs uppercase tracking-[0.35em] text-white/45">
+          Portfolio 2026
+        </p>
+        <h1 className="max-w-4xl font-serif text-6xl leading-[0.88] tracking-tight text-white sm:text-7xl lg:text-[8rem]">
+          Manoj Kumar
+          <span className="block font-sans text-lg font-medium uppercase tracking-[0.32em] text-cyan-200/80 sm:mt-4 sm:text-xl">
+            Android Developer
+          </span>
+        </h1>
+        <div className="mt-8 flex flex-wrap gap-3">
+          <span className="rounded-full border border-white/10 bg-white/[0.045] px-4 py-2 text-[11px] uppercase tracking-[0.28em] text-white/60 backdrop-blur-md">
+            Compose-first UI
+          </span>
+          <span className="rounded-full border border-white/10 bg-white/[0.045] px-4 py-2 text-[11px] uppercase tracking-[0.28em] text-white/60 backdrop-blur-md">
+            Clean architecture
+          </span>
+          <span className="rounded-full border border-white/10 bg-white/[0.045] px-4 py-2 text-[11px] uppercase tracking-[0.28em] text-white/60 backdrop-blur-md">
+            Product clarity
+          </span>
         </div>
+      </Reveal>
 
-        <div>
-          <h1 className={`${styles.heroHeadText} text-white`}>
-            Hi, I'm <span className='text-[#915EFF]'>Manoj</span>
-          </h1>
-          <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-            I build Android apps and modern software solutions
+      <Reveal delay={0.15}>
+        <div className="rounded-[2rem] border border-white/10 bg-white/[0.045] p-6 shadow-panel backdrop-blur-md">
+          <p className="text-sm leading-7 text-white/62">
+            I build minimal Android experiences with strong structure, smooth
+            interaction, and practical product thinking.
           </p>
-        </div>
-      </div>
 
-      <ComputersCanvas />
-
-      <div className='absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center'>
-        <a href='#about'>
-          <div className='w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2'>
-            <motion.div
-              animate={{
-                y: [0, 24, 0],
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                repeatType: "loop",
-              }}
-              className='w-3 h-3 rounded-full bg-secondary mb-1'
-            />
+          <div className="mt-8 space-y-5">
+            {stats.map((item) => (
+              <motion.div
+                key={item.label}
+                className="border-t border-white/10 pt-5"
+                whileHover={{ x: 4 }}
+                transition={{ duration: 0.25 }}
+              >
+                <p className="text-xs uppercase tracking-[0.28em] text-white/40">
+                  {item.label}
+                </p>
+                <p className="mt-2 text-sm text-white sm:text-base">{item.value}</p>
+              </motion.div>
+            ))}
           </div>
-        </a>
-      </div>
+        </div>
+      </Reveal>
     </section>
   );
-};
+}
 
 export default Hero;

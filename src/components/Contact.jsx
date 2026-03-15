@@ -1,136 +1,60 @@
-import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import emailjs from "@emailjs/browser";
+import Reveal from "./Reveal";
+import SectionTitle from "./SectionTitle";
 
-import { styles } from "../styles";
-import { EarthCanvas } from "./canvas";
-import { SectionWrapper } from "../hoc";
-import { slideIn } from "../utils/motion";
+const links = [
+  { label: "Email", value: "manoj@example.com", href: "mailto:manoj@example.com" },
+  { label: "GitHub", value: "github.com/manoj15u24", href: "https://github.com/manoj15u24" },
+  { label: "LinkedIn", value: "linkedin.com/in/manoj", href: "https://linkedin.com/in/manoj" },
+];
 
-const Contact = () => {
-  const formRef = useRef();
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
-  const [loading, setLoading] = useState(false);
-
-  const handleChange = (e) => {
-    const { target } = e;
-    const { name, value } = target;
-
-    setForm({
-      ...form,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setLoading(true);
-
-    emailjs
-      .send(
-        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
-        {
-          from_name: form.name,
-          to_name: "JavaScript Mastery",
-          from_email: form.email,
-          to_email: "sujata@jsmastery.pro",
-          message: form.message,
-        },
-        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
-      )
-      .then(
-        () => {
-          setLoading(false);
-          alert("Thank you. I will get back to you as soon as possible.");
-
-          setForm({
-            name: "",
-            email: "",
-            message: "",
-          });
-        },
-        (error) => {
-          setLoading(false);
-          console.error(error);
-
-          alert("Ahh, something went wrong. Please try again.");
-        }
-      );
-  };
-
+function Contact() {
   return (
-    <div
-      className={`xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden`}
-    >
-      <motion.div
-        variants={slideIn("left", "tween", 0.2, 1)}
-        className='flex-[0.75] bg-black-100 p-8 rounded-2xl'
-      >
-        <p className={styles.sectionSubText}>Get in touch</p>
-        <h3 className={styles.sectionHeadText}>Contact.</h3>
+    <section id="contact" className="py-20 sm:py-28">
+      <Reveal>
+        <SectionTitle
+          title="Contact"
+          subtitle="If the work feels aligned, let’s build something sharp and useful."
+        />
+      </Reveal>
 
-        <form
-          ref={formRef}
-          onSubmit={handleSubmit}
-          className='mt-12 flex flex-col gap-8'
-        >
-          <label className='flex flex-col'>
-            <span className='text-white font-medium mb-4'>Your Name</span>
-            <input
-              type='text'
-              name='name'
-              value={form.name}
-              onChange={handleChange}
-              placeholder="What's your good name?"
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
-            />
-          </label>
-          <label className='flex flex-col'>
-            <span className='text-white font-medium mb-4'>Your email</span>
-            <input
-              type='email'
-              name='email'
-              value={form.email}
-              onChange={handleChange}
-              placeholder="What's your web address?"
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
-            />
-          </label>
-          <label className='flex flex-col'>
-            <span className='text-white font-medium mb-4'>Your Message</span>
-            <textarea
-              rows={7}
-              name='message'
-              value={form.message}
-              onChange={handleChange}
-              placeholder='What you want to say?'
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
-            />
-          </label>
+      <div className="grid gap-10 lg:grid-cols-[1fr_0.9fr]">
+        <Reveal>
+          <div>
+            <p className="max-w-2xl font-serif text-4xl leading-tight text-white sm:text-6xl">
+              Open to Android roles, freelance builds, and product
+              collaboration.
+            </p>
+            <p className="mt-6 max-w-xl text-sm leading-7 text-white/48">
+              Available for product teams that care about shipping polished
+              software with clear structure and calm interaction design.
+            </p>
+          </div>
+        </Reveal>
 
-          <button
-            type='submit'
-            className='bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary'
-          >
-            {loading ? "Sending..." : "Send"}
-          </button>
-        </form>
-      </motion.div>
-
-      <motion.div
-        variants={slideIn("right", "tween", 0.2, 1)}
-        className='xl:flex-1 xl:h-auto md:h-[550px] h-[350px]'
-      >
-        <EarthCanvas />
-      </motion.div>
-    </div>
+        <Reveal delay={0.12}>
+          <div className="rounded-[2rem] border border-white/10 bg-white/[0.045] px-7 py-8 text-white shadow-panel backdrop-blur-md">
+            {links.map((item) => (
+              <motion.a
+                key={item.label}
+                href={item.href}
+                target={item.href.startsWith("http") ? "_blank" : undefined}
+                rel={item.href.startsWith("http") ? "noreferrer" : undefined}
+                className="flex items-center justify-between border-b border-white/10 py-5 last:border-b-0"
+                whileHover={{ x: 4 }}
+                transition={{ duration: 0.22 }}
+              >
+                <span className="text-xs uppercase tracking-[0.3em] text-white/45">
+                  {item.label}
+                </span>
+                <span className="text-sm text-white sm:text-base">{item.value}</span>
+              </motion.a>
+            ))}
+          </div>
+        </Reveal>
+      </div>
+    </section>
   );
-};
+}
 
-export default SectionWrapper(Contact, "contact");
+export default Contact;
