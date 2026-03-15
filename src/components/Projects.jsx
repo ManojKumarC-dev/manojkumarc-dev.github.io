@@ -28,7 +28,7 @@ function Projects() {
     <section id="projects" className="border-b border-white/10 py-20 sm:py-28">
       <Reveal>
         <SectionTitle
-          title="Selected projects"
+          title="Projects Worked"
           subtitle="Project work spanning embedded systems, firmware adaptation, and published engineering research."
         />
       </Reveal>
