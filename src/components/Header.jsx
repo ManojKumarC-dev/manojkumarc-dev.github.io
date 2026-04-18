@@ -13,7 +13,7 @@ function Header() {
           href="#home"
           className="w-fit rounded-full border border-white/10 bg-white/6 px-5 py-3 font-display text-sm uppercase tracking-[0.38em] text-white/92 shadow-[0_0_35px_rgba(114,151,255,0.08)] backdrop-blur-md sm:text-base"
         >
-          Manoj Kumar
+          Manoj Kumar C
         </a>
 
         <nav className="no-scrollbar flex items-center gap-2 overflow-x-auto rounded-full border border-white/10 bg-white/6 p-2 shadow-[0_0_40px_rgba(60,88,168,0.08)] backdrop-blur-md">
