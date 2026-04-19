@@ -87,9 +87,14 @@ function Chatbot() {
             transition={{ duration: 0.24 }}
           >
             <div className="border-b border-white/10 px-5 py-4">
-              <p className="text-xs uppercase tracking-[0.28em] text-cyan-200/70">
-                Manoj AI
-              </p>
+              <div className="flex items-center gap-3">
+                <p className="text-xs uppercase tracking-[0.28em] text-cyan-200/70">
+                  Manoj AI
+                </p>
+                <span className="rounded-full border border-cyan-200/20 bg-cyan-200/10 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-cyan-100/80">
+                  Beta
+                </span>
+              </div>
               <p className="mt-1 text-sm text-white/56">
                 Ask about experience, skills, and projects.
               </p>
