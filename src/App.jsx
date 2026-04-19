@@ -7,6 +7,7 @@ import Projects from "./components/Projects";
 import Experience from "./components/Experience";
 import About from "./components/About";
 import Contact from "./components/Contact";
+import Chatbot from "./components/Chatbot";
 
 function App() {
   useEffect(() => {
@@ -48,6 +49,7 @@ function App() {
           Copyright 2026 Manoj Kumar C | Built with Codex
         </footer>
       </main>
+      <Chatbot />
     </div>
   );
 }
